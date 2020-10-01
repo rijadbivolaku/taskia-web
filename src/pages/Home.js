@@ -1,4 +1,5 @@
 import React from 'react';
+import CountUp from 'react-countup';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -100,7 +101,9 @@ class Home extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6 text-center"><span className="likes-counter">100 000</span></div>
+                            <div className="col-md-6 text-center">
+                                <span className="likes-counter"><CountUp end={100000} separator=" " duration={2}/></span>
+                                </div>
                             <div className="col">
                                 <div className="justify-content-start d-none d-lg-flex">
                                     <div data-aos="zoom-in" data-aos-duration="2900" data-aos-once="true" className="image-circle med client-4">
