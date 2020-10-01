@@ -1,10 +1,12 @@
 import React from 'react';
 import CountUp from 'react-countup';
+import VisibilitySensor from "react-visibility-sensor";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-class Home extends React.Component {
-    render(){
+function Home() {
+    const [focus, setFocus] = React.useState(false);
+
         return(
             <div>
                 <Header/>
@@ -102,7 +104,16 @@ class Home extends React.Component {
                                 </div>
                             </div>
                             <div className="col-md-6 text-center">
-                                <span className="likes-counter"><CountUp end={100000} separator=" " duration={2}/></span>
+                                <span className="likes-counter">
+                                    <CountUp start={focus ? 0 : null} end={100000} separator=" " duration={2}>
+                                        {({ countUpRef }) => (
+                                            <VisibilitySensor onChange={(isVisible) => {if (isVisible) 
+                                                {setFocus(true);}}}>
+                                                <span ref={countUpRef} />
+                                            </VisibilitySensor>
+                                        )}
+                                        </CountUp>
+                                    </span>
                                 </div>
                             <div className="col">
                                 <div className="justify-content-start d-none d-lg-flex">
@@ -123,5 +134,5 @@ class Home extends React.Component {
                 <Footer/>
             </div>
         );
-    }
-}export default Home;
+}
+export default Home;
